@@ -1,0 +1,32 @@
+#include <iostream>
+#include <string>
+
+class MARSH {
+public:
+	int Number;
+	std::string Begin;
+	std::string End;
+
+	void Information() {
+		std::cout << "Номер маршрута: " << Number << std::endl << "Начальный пункт маршрута: " << Begin << std::endl << "Конечный пункт маршрута: " << End;
+	}
+};
+
+int main() {
+	setlocale(LC_ALL, "RUS");
+	MARSH massiv[8];
+	std::cout << "Введите все маршруты: " << std::endl;
+	for (int i = 0; i < 8; i++) {
+		std::cin >> massiv[i].Number >> massiv[i].Begin >> massiv[i].End;
+	}
+	std::cout << "Введите необходимый номер маршрута: ";
+	int G;
+	std::cin >> G;
+	for (int i = 0; i < 8; i++) {
+		if (massiv[i].Number == G) {
+			massiv[i].Information();
+			return 0;
+		}
+	}
+	std::cout << "Маршрутов с таким номером не существует!";
+}
