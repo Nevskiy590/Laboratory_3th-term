@@ -1,0 +1,110 @@
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <cstring>
+
+int main() {
+	setlocale(LC_ALL, "RUS");
+	std::string pred, symbol;
+	std::ifstream myfile("Text.txt");
+	std::cout << "Итоговый текст: " << std::endl;
+	if (myfile.is_open()) {
+		while (std::getline(myfile, pred)) {
+			pred[0] = std::toupper(pred[0]);
+			for (int i = 1; i < size(pred); i++)
+			{
+				symbol = pred.substr(i, 1);
+				if (pred.substr(i - 1, 1) == " ")
+				{
+					if (symbol == "a" or symbol == "A" or
+						symbol == "e" or symbol == "E" or
+						symbol == "y" or symbol == "Y" or
+						symbol == "u" or symbol == "U" or
+						symbol == "i" or symbol == "I" or
+						symbol == "o" or symbol == "O" or
+						symbol == "." or symbol == "," or
+						symbol == " " or symbol == ";" or
+						symbol == ":" or symbol == "!" or
+						symbol == "?")
+					{
+						continue;
+					}
+					else
+					{
+						pred[i] = std::toupper(pred[i]);
+					}
+				}
+
+			}
+			std::cout << pred << std::endl;
+		}
+	}
+	myfile.close();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <cstring>
+
+int main() 
+{
+	setlocale(LC_ALL, "RUS");
+	std::string pred, symbol;
+	std::ifstream myfile("Text.txt"), myfile1("Text.txt");
+	std::cout << "Текст из файла: ";
+	int maxsym = 0, numbersym;
+	if (myfile.is_open()) 
+	{
+		while (std::getline(myfile, pred)) 
+		{
+			numbersym = 0;
+			for (int i = 0; i < size(pred); i++)
+			{
+				if (pred.substr(i, 1) == "," or pred.substr(i, 1) == "."
+					or pred.substr(i, 1) == ";" or pred.substr(i, 1) == ":"
+					or pred.substr(i, 1) == "!" or pred.substr(i, 1) == "?")
+				{
+					numbersym += 1;
+				}
+			}
+			if (numbersym > maxsym)
+			{
+				maxsym = numbersym;
+			}
+		}
+	}
+	myfile.close();
+	if (myfile1.is_open())
+	{
+		while (std::getline(myfile1, pred))
+		{
+			numbersym = 0;
+			for (int i = 0; i < size(pred); i++)
+			{
+				if (pred.substr(i, 1) == "," or pred.substr(i, 1) == "."
+					or pred.substr(i, 1) == ";" or pred.substr(i, 1) == ":"
+					or pred.substr(i, 1) == "!" or pred.substr(i, 1) == "?")
+				{
+					numbersym += 1;
+				}
+			}
+			if (numbersym == maxsym)
+			{
+				std::cout << pred;
+			}
+		}
+	}
+	myfile1.close();
+}
