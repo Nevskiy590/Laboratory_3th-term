@@ -1,0 +1,100 @@
+#include <iostream>
+#include <string>
+#include <map>
+int main() 
+{
+	setlocale(LC_ALL, "RUS");
+	std::string date, number, month, year;
+	std::map < std::string, std::string > months;
+	months["1"] = "Январь";
+	months["2"] = "Февраль";
+	months["3"] = "Март";
+	months["4"] = "Апрель";
+	months["5"] = "Май";
+	months["6"] = "Июнь";
+	months["7"] = "Июль";
+	months["8"] = "Август";
+	months["9"] = "Сентябрь";
+	months["10"] = "Октябрь";
+	months["11"] = "Ноябрь";
+	months["12"] = "Декабрь";
+	std::cout << "Введите дату: ";
+	std::cin >> date;
+	month = date.substr(0, 2);
+	number = date.substr(3,2);
+	year ="20" + date.substr(6, 2);
+	std::cout << "Дата: " << months[month] << " " << number <<", " << year;
+}
+
+
+
+
+
+
+
+
+
+
+
+#include <iostream>
+#include <string>
+
+int main()
+{
+	setlocale(LC_ALL, "Rus");
+	std::string Facult, groups[20] = { "" };
+	int count_group, marks[20][5], MARKS[4] = { 0 }, USPEV = 0, Uspev[20] = { 0 };
+	std::cout << "Наименование факультета: ";
+	std::cin >> Facult;
+	std::cout << "Число групп: ";
+	std::cin >> count_group;
+	std::cout << "Наименования групп: ";
+	for (int i = 0; i < count_group; i++)
+	{
+		std::cin >> groups[i];
+	}
+	
+	std::cout << "Оценки, успеваемость по группам: ";
+	for (int i = 0; i < count_group; i++)
+	{
+		for (int j = 0; j < 5; j++)
+		{
+			std::cin >> marks[i][j];
+		}
+	}
+
+	for (int j = 0; j < 4; j++)
+	{
+		int procent = 0;
+		for (int i = 0; i < count_group; i++)
+		{
+			procent += marks[i][j];
+		}
+		procent /= count_group;
+		MARKS[j] = procent;
+	}
+
+	for (int i = 0; i < count_group; i++)
+	{
+		Uspev[i] = marks[i][4];
+		USPEV += marks[i][4];
+	}
+	USPEV /= count_group;
+	std::cout << "Успеваемость по группам факультета - " << Facult << std::endl;
+	std::cout << "Группа % пятерок % четверок % троек % двоек % успеваемости по группе" << std::endl;
+	for (int i = 0; i < count_group; i++)
+	{
+		std::cout << groups[i] << " ";
+		for (int j = 0; j < 5; j++)
+		{
+			std::cout << marks[i][j] << " ";
+		}
+		std::cout << std::endl;
+	}
+	std::cout << "Средний % по факультету: ";
+	for (int i = 0; i < 4; i++)
+	{
+		std::cout << MARKS[i] << " ";
+	}
+	std::cout << USPEV;
+}
