@@ -1,0 +1,63 @@
+#include <iostream>
+
+int main() {
+	setlocale(LC_ALL, "RUSSIAN");
+	int a;
+	std::cout << "Введите число: ";
+	std::cin >> a;
+	if (a > 0) {
+		std::cout << "Было введено положительное число";
+	}
+	else if (a == 0) {
+		std::cout << "Был введен ноль";
+	}
+	else {
+		std::cout << "Было введено отрицательное число";
+	}
+	return 0;
+}
+
+
+
+
+#include <iostream>
+
+int main() {
+	setlocale(LC_ALL, "RUSSIAN");
+	int i, sum = 0;
+	std::cout << "Элементы массива:" << std::endl;
+	for (i = 1; i < 11; i++) {
+		sum += i;
+		std::cout << "a[" << i-1 << "] = " << i << "\n";
+	}
+	std::cout << "Сумма элементов массива: " << sum;
+}
+
+
+
+
+#include <iostream>
+
+int main() {
+	setlocale(LC_ALL, "RUSSIAN");
+	int a;
+	std::cout << "Введите класс: ";
+	std::cin >> a;
+	switch (a)
+	{
+	case 1:
+		std::cout << "Зеленая команда";
+		break;
+	case 2:
+		std::cout << "Красная команда";
+		break;
+	case 3:
+		std::cout << "Синяя команда";
+		break;
+	case 4:
+		std::cout << "Желтая команда";
+		break;
+	default:
+		std::cout << "Неправильно введен класс";
+		break;
+	}}
