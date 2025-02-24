@@ -1,0 +1,176 @@
+#include <iostream>
+
+int SummaOtr(int n, int *p) {
+	int summa = 0;
+	for (int i = 0; i < n; i++) {
+		if (*(p + i) < 0) {
+			summa += *(p + i);
+		}
+	}
+	return summa;
+}
+
+int NullSumma(int n, int* p) {
+	int Null[2] = { 99,99 };
+	int summa = 0;
+	for (int i = 0; i < n; i++) {
+		if (*(p + i) == 0) {
+			if (Null[0] == 99) {
+				Null[0] = i;
+			}
+			else if (Null[1] == 99) {
+				Null[1] = i;
+				break;
+			}
+		}
+	}
+	for (int i = Null[0]; i < Null[1]; i++) {
+		summa += *(p + i);
+	}
+	return summa;
+}
+
+void Sortir(int n, int* p) {
+	int a;
+	for (int i = 0; i < n-1; i++) {
+		for (int g = i + 1; g < n; g++) {
+			if (*(p+i) > *(p+g)) {
+				a = *(p + g);
+				*(p + g) = *(p + i);
+				*(p + i) = a;
+			}
+		}
+	}
+}
+
+int main() {
+	setlocale(LC_ALL, "RUS");
+	int n, massiv[20];
+	std::cout << "Введите количество элементов в массиве: ";
+	std::cin >> n;
+	std::cout << "Введите элементы массива: " << std::endl;
+	for (int i = 0; i < n; i++) {
+		std::cin >> massiv[i];
+	}
+	int* p;
+	p = massiv;
+	std::cout << "Сумма отрицательных элементов массива: " << SummaOtr(n, p) << std::endl;
+	std::cout << "Сумма элементов массива между нулями: " << NullSumma(n, p) << std::endl;
+	Sortir(n, p);
+	std::cout << "Упорядоченный по возрастанию массив: ";
+	for (int i = 0; i < n; i++) {
+		std::cout << massiv[i] << " ";
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#include <iostream>
+
+int SummaOtr(int** p, int m)
+{
+	int summa = 0;
+	bool a;
+	for (int j = 0; j < m; j++)
+	{
+		a = true;
+		for (int i = 0; i < m; i++)
+		{
+			if (p[i][j] < 0)
+			{
+				a = false;
+			}
+		}
+		if (a == true)
+		{
+			for (int i = 0; i < m; i++)
+			{
+				summa += p[i][j];
+			}
+		}
+	}
+	return summa;
+}
+
+int Minimum(int** p, int m)
+{
+	int summa = 0, minsumma = 100000, i = 0, j = 1, k = 0;
+	while (j < m - 1)
+	{
+		summa = 0;
+		i = 0;
+		k = 0;
+		while (j >= 0)
+		{
+			summa += abs(p[i][j]);
+			i++;
+			j--;
+			k++;
+		}
+		j += (k + 1);
+		if (minsumma > summa)
+		{
+			minsumma = summa;
+		}
+	}
+	j = m - 2;
+	while (j > 0)
+	{
+		summa = 0;
+		i = m - 1;
+		k = 0;
+		while (j < m)
+		{
+			summa += abs(p[i][j]);
+			i--;
+			j++;
+			k++;
+		}
+		j -= (k + 1);
+		if (minsumma > summa)
+		{
+			minsumma = summa;
+		}
+	}
+	return minsumma;
+}
+
+int main() 
+{
+	setlocale(LC_ALL, "RUS");
+	int m;
+	std::cout << "Введите размерность квадратной матрицы: ";
+	std::cin >> m;
+	int** p = new int* [m];
+	for (int i = 0; i < m; i++)
+	{
+		p[i] = new int[m];
+	}
+	std::cout << "Введите элементы квадратной матрицы: " << std::endl;
+	for (int i = 0; i < m; i++)
+	{
+		for (int j = 0; j < m; j++)
+		{
+			std::cin >> p[i][j];
+		}
+	}
+	std::cout << "Сумма элементов: " << SummaOtr(p, m) << std::endl;
+	std::cout << "Минимум: " << Minimum(p, m);
+	for (int i = 0; i < m; i++) 
+	{
+		delete[] p[i];
+	}
+	delete[] p;
+}
