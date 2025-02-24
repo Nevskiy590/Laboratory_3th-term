@@ -1,0 +1,57 @@
+#include <iostream>
+
+int main() {
+	setlocale(LC_ALL, "Rus");
+	int m, n, mat[20][20], mas[20] = {0};
+	std::cout << "Введите количество строк матрицы: ";
+	std::cin >> m;
+	std::cout << "Введите количество столбцов матрицы: ";
+	std::cin >> n;
+	for (int i = 0; i < m; i++) {
+		for (int j = 0; j < n; j++) {
+			std::cin >> mat[i][j];
+		}
+	}
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			if (mat[j][i] > 0) {
+				mas[i] += mat[j][i];
+			}
+		}
+	}
+	std::cout << "Одномерный массив из сумм положительных элементов столбцов прямоугольной матрицы: ";
+	for (int i = 0; i < n; i++) {
+		std::cout << mas[i] << " ";
+	}
+}
+
+
+
+
+#include <iostream>
+
+int main() {
+	setlocale(LC_ALL, "Rus");
+	int m, n, mat[20][20];
+	std::cout << "Введите количество строк матрицы: ";
+	std::cin >> m;
+	std::cout << "Введите количество столбцов матрицы: ";
+	std::cin >> n;
+	for (int i = 0; i < m; i++) {
+		for (int j = 0; j < n; j++) {
+			std::cin >> mat[i][j];
+		}
+	}
+	double max = -100000, min = 100000;
+	for (int i = 0; i < m; i++) {
+		for (int j = 0; j < n; j++) {
+			if (mat[i][j] > max) {
+				max = mat[i][j];
+			}
+			if (mat[i][j] < min) {
+				min = mat[i][j];
+			}
+		}
+	}
+	std::cout << "Среднее арифметическое: " << (min + max) / 2;
+}
